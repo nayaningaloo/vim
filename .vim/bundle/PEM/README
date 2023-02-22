@@ -1,0 +1,103 @@
+ABOUT
+--------------------------------------------------------------------------------
+This Plugin is intended to fold every single Cert in a PEM Certificat.
+
+It will match on these filename extensions for X.509 certificates:
+
+    .pem – (Privacy-enhanced Electronic Mail) Base64 encoded DER certificate,
+           enclosed between "-----BEGIN CERTIFICATE-----" and
+           "-----END CERTIFICATE-----"
+    .p12 – PKCS#12, may contain certificate(s) (public) and private keys
+           (password protected)
+    .pfx – PFX, predecessor of PKCS#12 (usually contains data in PKCS#12 
+           format, e.g., with PFX files generated in IIS)
+    .cer, .crt, .der – usually in binary DER form, but Base64-encoded
+                       certificates are common too (see .pem above)
+    .p7b, .p7c – PKCS#7 SignedData structure without data, just certificate(s)
+                 or CRL(s)
+    (origin: https://en.wikipedia.org/wiki/X.509)
+and also PEM Certificates with no file-ending.
+
+These days it only fold lines matching ^-----B, maybe when there is enough time,
+it'll also fold at these places. Intendet foldlevels [n]
+
+    Certificate [1]
+        Version [2]
+        Serial Number [2]
+        Algorithm ID [2]
+        Issuer [2]
+        Validity [2]
+            Not Before [3]
+            Not After [3]
+        Subject [2]
+        Subject Public Key Info [2]
+            Public Key Algorithm [2]
+            Subject Public Key [2]
+        Issuer Unique Identifier (optional) [2]
+        Subject Unique Identifier (optional) [2]
+        Extensions (optional) [2]
+            ...
+    Certificate Signature Algorithm [1||2]
+    Certificate Signature [1||2]
+
+
+
+INSTALLATION
+--------------------------------------------------------------------------------
+If you use pathogen Plugin for vim, put the entire folder in your ~/.vim/bundle.
+If you don't use pathogen Plugin, you have to do it - back to the roots -
+adjust your vim runtimepath (see :help 'runtimepath') and put the files in a
+location recodnized by your runtimepath. Or just install pathogen, it makes it
+much easier to update your plugins. 
+
+Installing Pathogen Plugin is quiet easy, just enter:
+
+mkdir -p ~/.vim/autoload ~/.vim/bundle
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+for more information visit: 
+http://www.vim.org/scripts/script.php?script_id=2332
+
+RFC
+--------------------------------------------------------------------------------
+For more information about X-509 Certificates read the RFC:
+https://tools.ietf.org/html/rfc5280
+
+================================================================================
+================================================================================
+
+LICENCE
+--------------------------------------------------------------------------------
+This vim-plugin is intendet to fold Certs in PEM files
+Copyright (C) 2015  Heike Yvonne Pesch 
+                    heike.dasinci.pesch@googlemail.com
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+This vim-plugin is intendet to fold Certs in PEM files
+Copyright (C) 2015  Heike Yvonne Pesch
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+

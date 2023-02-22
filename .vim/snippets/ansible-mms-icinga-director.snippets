@@ -1,0 +1,261 @@
+
+snippet icinga_command
+	- name: ${1:create command}
+	  t_systems_mms.icinga_director.icinga_command:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    #arguments:
+	    #  '--hostname':
+	    #    value: $host_address$
+	    #  '--${6}':
+	    #    value: ${7}
+	    command: "${8}"
+	    command_type: "${9}"
+	    #disabled: ${10:false}
+	    #object_name: ${11}
+	    #imports:
+	    #  - ${12}
+	    timeout: "${13:1m}"
+	    #vars:
+	    #  ${14:key}: ${15:value}
+	    #use_proxy: "${16}"
+	    #validate_certs: "${17}"
+	    #force_basic_auth: "${18}"
+	    #client_cert: "${19}"
+	    #client_key: "${20}"
+	    #zone: "${21}"
+
+snippet icinga_command_info
+	- name: ${1:Query a command in icinga}
+	  t_systems_mms.icinga_director.icinga_command_info:
+	    url: "{{ icinga_url }}"
+	    url_username: "{{ icinga_user }}"
+	    url_password: "{{ icinga_pass }}"
+	    query: "${2}"
+
+snippet icinga_command_template
+	- name: ${1:create command template}
+	  t_systems_mms.icinga_director.icinga_command_template:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    #arguments:
+	    #  '--hostname':
+	    #    value: $host_address$
+	    #  '--${6}':
+	    #    value: ${7}
+	    command: "${8}"
+	    command_type: "${9}"
+	    disabled: ${10:false}
+	    #object_name: ${11}
+	    #imports:
+	    #  - ${12}
+	    timeout: "${13:1m}"
+	    #vars:
+	    #  ${14:key}: ${15:value}
+
+
+snippet icinga_endpoint
+	- name: ${1:create an endpoint in icinga}
+	  t_systems_mms.icinga_director.icinga_endpoint:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    object_name: "${6}"
+	    host: "${7:127.0.0.1}"
+	    zone: "${8}"
+
+
+snippet icinga_host
+	- name: ${1:create a host in icinga}
+	  t_systems_mms.icinga_director.icinga_host:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    disabled: ${6:false}
+	    object_name: "${7}"
+	    address: "${8}"
+	    address6: "${9}"
+	    display_name: "${10}"
+	    check_command: ${13:hostalive}
+	    #groups:
+	    #  - "${11}"
+	    #imports:
+	    #  - "${12}"
+	    #vars:
+	    #  ${14:varname}: "${15:value}"
+	    #notes: "example note"
+	    #notes_url: "'http://url1' 'http://url2'"
+
+
+snippet icinga_hostgroup
+	- name: ${1:Create hostgroup}
+	  t_systems_mms.icinga_director.icinga_hostgroup:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    disabled: ${6:false}
+	    object_name: "${7}"
+	    display_name: "${8}"
+	    assign_filter: '${9:host.name="foohost"}'
+
+snippet icinga_hostgroup_info
+	- name: Query a hostgroup in icinga
+	  t_systems_mms.icinga_director.icinga_hostgroup_info:
+	    url: "{{ ${2:icinga_url} }}"
+	    url_username: "{{ ${3:icinga_user} }}"
+	    url_password: "{{ ${4:icinga_pass} }}"
+	    query: "${5:foohostgroup}"
+
+snippet icinga_host_template
+	- name: ${1:create a host template in icinga}
+	  t_systems_mms.icinga_director.icinga_host_template:
+	    url: "{{ ${2:icinga_url} }}"
+	    use_proxy: "${3:false}"
+	    validate_certs: "{{ ${4:icinga_validate_certs} }}"
+	    url_username: "{{ icinga_user }}"
+	    url_password: "{{ icinga_pass }}"
+	    force_basic_auth: "${6:false}"
+	    client_cert: "${7:icinga_client_cert}"
+	    client_key: "${8:icinga_client_key}"
+	    state: "${9:present}"
+	    object_name: "${10:examplehosttemplate}"
+	    display_name: "${11:examplehosttemplate}"
+	    address: "${12}"
+	    address6: "${13}"
+	    groups: "${14}"
+	    check_command: "${15:example_check_command}"
+	    check_interval: "{{ ${16:90s} }}"
+	    disabled: "{{ ${17:false} }}"
+	    imports:
+	      - "${18}"
+	    zone: "{{ ${19:example.zone} }}"
+	    vars:
+	      - "${18}"
+	    notes: "${21:example note}"
+	    notes_url: "${22:'https://url' 'https://url2'}"
+	    has_agent: "${23:false}"
+	    master_should_connect: "${24:true}"
+	    accept_config: "${25:true}"
+	    event_command: "${26}"
+
+
+snippet icinga_notification
+	- name: create notification
+	  t_systems_mms.icinga_director.icinga_notification:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    disabled: ${6:false}
+	    apply_to: ${7:host}
+	    assign_filter: 'host.name="foohost"'
+	    imports:
+	      - ${8}
+	    notification_interval: '${9:0}'
+	    object_name: ${10:E-Mail_host}
+	    states:
+	      - Up
+	      - Down
+	    types:
+	      - Problem
+	      - Recovery
+	    users:
+	      - ${11}
+
+
+snippet icinga_notification_template
+	- name: ${1:create notification template}
+	  t_systems_mms.icinga_director.icinga_notification_template:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    notification_interval: '${6:0}'
+	    object_name: ${7}
+	    states:
+	      - Up
+	      - Down
+	    types:
+	      - Problem
+	      - Recovery
+	    times_begin: ${8:20}
+	    times_end: ${9:120}
+
+
+snippet icinga_service
+	- name: ${1:create service}
+	  tags: service
+	  t_systems_mms.icinga_director.icinga_service:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    object_name: "${6}"
+	    check_command: ${7}
+	    use_agent: ${8:false}
+	    #host: ${9}
+	    #vars:
+	    #  ${10}: ${11}
+	    #notes: "example note"
+	    #notes_url: "'http://url1' 'http://url2'"
+
+
+snippet icinga_service_apply
+	- name: ${1:Add service apply rule to icinga}
+	  t_systems_mms.icinga_director.icinga_service_apply:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    object_name: "${6}"
+	    assign_filter: '${7:host}.${8:name}="${9:foohost}"'
+	    check_command: ${10}
+	    display_name: "${11}"
+	    #imports:
+	    #  - ${12}
+	    #groups:
+	    #  - ${13}
+	    #vars:
+	    #  ${14}: ${15}
+
+
+snippet icinga_service_template
+	- name: ${1:create servicetemplate}
+	  t_systems_mms.icinga_director.icinga_service_template:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    object_name: "${6}"
+	    use_agent: ${7:false}
+	    #vars:
+	    #  ${8}: ${9}
+	    #notes: "example note"
+	    #notes_url: "'http://url1' 'http://url2'"
+
+
+snippet icinga_timeperiod
+	- name: ${1:create timeperiod}
+	  t_systems_mms.icinga_director.icinga_timeperiod:
+	    state: ${2:present}
+	    url: "{{ ${3:icinga_url} }}"
+	    url_username: "{{ ${4:icinga_user} }}"
+	    url_password: "{{ ${5:icinga_pass} }}"
+	    object_name: "${6:24x7}"
+	    ranges:
+	      monday: "00:00-23:59"
+	      tuesday: "00:00-23:59"
+	      wednesday: "00:00-23:59"
+	      thursday: "00:00-23:59"
+	      friday: "00:00-23:59"
+	      saturday: "00:00-23:59"
+	      sunday: "00:00-23:59"
+
+

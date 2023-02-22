@@ -1,0 +1,24 @@
+[submodule ".vim/pack/git-plugins/start/ale"]
+	path = .vim/pack/git-plugins/start/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule ".vim/pack/git-plugins/start/rust"]
+	path = .vim/pack/git-plugins/start/rust
+	url = https://github.com/rust-lang/rust.vim
+[submodule ".vim/pack/git-plugins/start/vim-airline"]
+	path = .vim/pack/git-plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule ".vim/pack/git-plugins/start/taglist-vim"]
+	path = .vim/pack/git-plugins/start/taglist-vim
+	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule ".vim/pack/git-plugins/start/squirrel-vim"]
+	path = .vim/pack/git-plugins/start/squirrel-vim
+	url = https://github.com/vim-scripts/squirrel.vim.git
+[submodule ".vim/bundle/patchreview-vim"]
+	path = .vim/bundle/patchreview-vim
+	url = https://github.com/junkblocker/patchreview-vim
+[submodule ".vim/bundle/vim-codreview"]
+	path = .vim/bundle/vim-codreview
+	url = https://github.com/codegram/vim-codereview.git
+[submodule ".vim/bundle/terraform-snippets"]
+	path = .vim/bundle/terraform-snippets
+	url = https://github.com/phenomenes/ansible-snippets.git
